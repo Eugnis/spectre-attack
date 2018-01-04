@@ -8,6 +8,12 @@
 #else
 #include <x86intrin.h> /* for rdtscp and clflush */ 
 #endif
+
+/* sscanf_s only works in MSVC. sscanf should work with other compilers*/
+#ifndef _MSC_VER
+#define sscanf_s sscanf
+#endif
+
 /********************************************************************
 Victim code.
 ********************************************************************/
