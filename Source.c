@@ -139,6 +139,9 @@ int main(int argc, const char* * argv)
 			printf("(second best: 0x%02X score=%d)", value[1], score[1]);
 		printf("\n");
 	}
-	getchar();
+#ifdef _MSC_VER
+	printf("Press ENTER to exit\n");
+	getchar();	/* Pause Windows console */
+#endif
 	return (0);
 }
