@@ -13,7 +13,7 @@ C, uses libs:
 * intrin.h - for rdtscp and clflush
 
 ## What's example do?
-We're putting text "The Magic Words are Squeamish Ossifrage." in memory and then we're trying to read it using exploit. If system is vulnerable, you'll see same text in output, readed from memory.
+We're putting text "The Magic Words are Squeamish Ossifrage." in memory and then we're trying to read it using exploit. If system is vulnerable, you'll see same text in output, read from memory.
 ***
 In this code, if the compiled instructions in `victim_function()` were executed in strict program order, the function would only read from `array1[0..15]` since array1 size = 16. However, when executed speculatively, out-of-bounds reads are possible. The `readMemoryByte()` function makes several training calls to `victim_function()` to make the branch predictor expect valid values for x, then calls with an out-of-bounds x. The conditional branch mispredicts, and the ensuing speculative execution reads a secret byte using the out-of-bounds x. The speculative code then reads from `array2[array1[x] * 512]`, leaking the value of `array1[x]` into the cache state. To complete the attack, a simple flush+probe is used to identify which cache line in `array2` was loaded, revealing the memory contents. The attack is repeated several times, so even if the target byte was initially uncached, the first iteration will bring it into the cache.
 
