@@ -23,8 +23,10 @@ The unoptimized code reads approximately 10KB/second on an i7 Surface Pro 3.
 * [Spectre exploits info]
 * [CVE-2017-5753] - Variant 1: bounds check bypass
 * [CVE-2017-5715] - Variant 2: branch target injection
+* [Intel affected CPUs list]
 
 [Spectre paper]: <https://spectreattack.com/spectre.pdf>
 [Spectre exploits info]: <https://spectreattack.com>
 [CVE-2017-5753]: <http://www.cve.mitre.org/cgi-bin/cvename.cgi?name=2017-5753>
 [CVE-2017-5715]: <http://www.cve.mitre.org/cgi-bin/cvename.cgi?name=2017-5715>
+[Intel affected CPUs list]: <https://security-center.intel.com/advisory.aspx?intelid=INTEL-SA-00088&languageid=en-fr>
