@@ -24,7 +24,7 @@ uint8_t array2[256 * 512];
 
 char* secret = "The Magic Words are Squeamish Ossifrage.";
 
-uint8_t temp = 0; /* Used so compiler won’t optimize out victim_function() */
+uint8_t temp = 0; /* Used so compiler won't optimize out victim_function() */
 
 void victim_function(size_t x)
 {
@@ -105,7 +105,7 @@ void readMemoryByte(size_t malicious_x, uint8_t value[2], int score[2])
 		if (results[j] >= (2 * results[k] + 5) || (results[j] == 2 && results[k] == 0))
 			break; /* Clear success if best is > 2*runner-up + 5 or 2/0) */
 	}
-	results[0] ^= junk; /* use junk so code above won’t get optimized out*/
+	results[0] ^= junk; /* use junk so code above won't get optimized out*/
 	value[0] = (uint8_t)j;
 	score[0] = results[j];
 	value[1] = (uint8_t)k;
