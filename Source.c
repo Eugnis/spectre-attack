@@ -5,7 +5,7 @@
 #include <intrin.h> /* for rdtscp and clflush */
 #pragma optimize("gt", on)
 #else
-#include <x86intrin.h> /* for rdtscp and clflush */ 
+#include <x86intrin.h> /* for rdtscp and clflush */
 #endif
 
 /* sscanf_s only works in MSVC. sscanf should work with other compilers*/
@@ -116,10 +116,10 @@ int main(int argc, const char* * argv)
 {
 	printf("Putting '%s' in memory\n", secret);
 	size_t malicious_x = (size_t)(secret - (char *)array1); /* default for malicious_x */
-	int i, score[2], len = strlen(secret);
+	int score[2], len = strlen(secret);
 	uint8_t value[2];
 
-	for (i = 0; i < sizeof(array2); i++)
+	for (size_t i = 0; i < sizeof(array2); i++)
 		array2[i] = 1; /* write to array2 so in RAM not copy-on-write zero pages */
 	if (argc == 3)
 	{
@@ -137,7 +137,9 @@ int main(int argc, const char* * argv)
 		printf("0x%02X='%c' score=%d ", value[0],
 		       (value[0] > 31 && value[0] < 127 ? value[0] : '?'), score[0]);
 		if (score[1] > 0)
-			printf("(second best: 0x%02X score=%d)", value[1], score[1]);
+			printf("(second best: 0x%02X='%c' score=%d)", value[1],
+				   (value[1] > 31 && value[1] < 127 ? value[1] : '?'),
+				   score[1]);
 		printf("\n");
 	}
 #ifdef _MSC_VER
