@@ -114,7 +114,7 @@ void readMemoryByte(size_t malicious_x, uint8_t value[2], int score[2])
 
 int main(int argc, const char* * argv)
 {
-	printf("Putting '%s' in memory\n", secret);
+	printf("Putting '%s' in memory, address %p\n", secret, (void *)(secret));
 	size_t malicious_x = (size_t)(secret - (char *)array1); /* default for malicious_x */
 	int score[2], len = strlen(secret);
 	uint8_t value[2];
@@ -126,6 +126,7 @@ int main(int argc, const char* * argv)
 		sscanf_s(argv[1], "%p", (void * *)(&malicious_x));
 		malicious_x -= (size_t)array1; /* Convert input value into a pointer */
 		sscanf_s(argv[2], "%d", &len);
+		printf("Trying malicious_x = %p, len = %d\n", (void *)malicious_x, len);
 	}
 
 	printf("Reading %d bytes:\n", len);
